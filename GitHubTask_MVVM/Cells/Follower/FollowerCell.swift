@@ -1,14 +1,13 @@
 //
-//  followerCollectionViewCell.swift
-//  03_URLSessionAndUICollection
+//  FollowerCell.swift
+//  GitHubTask_MVVM
 //
-//  Created by FTS on 03/10/2023.
+//  Created by FTS on 31/10/2023.
 //
 
 import UIKit
 
-class FollowerCollectionViewCell: UICollectionViewCell {
-    
+class FollowerCell: UICollectionViewCell {
     @IBOutlet weak var followerImg: RoundedImageView!
     @IBOutlet weak var followerName: UILabel!
     private var viewModel = FollowerCellViewModel()

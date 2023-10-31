@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FollowerViewController" customModule="GitHubTask_MVVM" customModuleProvider="target">
+            <connections>
+                <outlet property="collectionView" destination="qW3-oq-FOG" id="0ns-1s-APm"/>
+                <outlet property="noResultsLabel" destination="Ipj-Oh-UQa" id="aeh-C5-LzG"/>
+                <outlet property="searchBar" destination="NTu-C3-otn" id="RS6-PD-N4p"/>
+                <outlet property="view" destination="NX1-Xs-j5b" id="3w4-YJ-xbX"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="NX1-Xs-j5b">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <searchBar contentMode="redraw" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="NTu-C3-otn">
+                    <rect key="frame" x="0.0" y="103" width="393" height="56"/>
+                    <textInputTraits key="textInputTraits"/>
+                </searchBar>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No results found" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ipj-Oh-UQa">
+                    <rect key="frame" x="118.66666666666667" y="413" width="155.66666666666663" height="26.333333333333314"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="qW3-oq-FOG">
+                    <rect key="frame" x="0.0" y="159" width="393" height="659"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="hiG-dq-5hg">
+                        <size key="itemSize" width="141" height="133"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                    <cells/>
+                </collectionView>
+                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="znQ-EK-s4G">
+                    <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                    <color key="barTintColor" systemColor="systemBackgroundColor"/>
+                    <items>
+                        <navigationItem title="Followers" id="McW-Fq-lk7"/>
+                    </items>
+                </navigationBar>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="1wp-dq-Ux9"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="znQ-EK-s4G" firstAttribute="top" secondItem="1wp-dq-Ux9" secondAttribute="top" id="3cJ-fL-WUt"/>
+                <constraint firstItem="znQ-EK-s4G" firstAttribute="leading" secondItem="1wp-dq-Ux9" secondAttribute="leading" id="7aN-6X-2kz"/>
+                <constraint firstItem="1wp-dq-Ux9" firstAttribute="bottom" secondItem="qW3-oq-FOG" secondAttribute="bottom" id="8Hi-kF-0rX"/>
+                <constraint firstItem="NTu-C3-otn" firstAttribute="top" secondItem="znQ-EK-s4G" secondAttribute="bottom" id="Asc-CL-TMB"/>
+                <constraint firstItem="qW3-oq-FOG" firstAttribute="top" secondItem="NTu-C3-otn" secondAttribute="bottom" id="M7Q-pr-h3s"/>
+                <constraint firstItem="qW3-oq-FOG" firstAttribute="top" secondItem="NTu-C3-otn" secondAttribute="bottom" id="P2V-XR-PBw"/>
+                <constraint firstItem="NTu-C3-otn" firstAttribute="top" secondItem="znQ-EK-s4G" secondAttribute="bottom" id="X4a-qi-jpR"/>
+                <constraint firstItem="NTu-C3-otn" firstAttribute="leading" secondItem="1wp-dq-Ux9" secondAttribute="leading" id="k9F-od-t6T"/>
+                <constraint firstItem="qW3-oq-FOG" firstAttribute="leading" secondItem="1wp-dq-Ux9" secondAttribute="leading" id="m0N-Hf-ZI4"/>
+                <constraint firstItem="1wp-dq-Ux9" firstAttribute="trailing" secondItem="qW3-oq-FOG" secondAttribute="trailing" id="qvF-gn-Yd4"/>
+                <constraint firstItem="NTu-C3-otn" firstAttribute="trailing" secondItem="1wp-dq-Ux9" secondAttribute="trailing" id="tSa-Il-ZHY"/>
+                <constraint firstItem="Ipj-Oh-UQa" firstAttribute="centerY" secondItem="NX1-Xs-j5b" secondAttribute="centerY" id="wie-j0-ZW9"/>
+                <constraint firstItem="znQ-EK-s4G" firstAttribute="trailing" secondItem="1wp-dq-Ux9" secondAttribute="trailing" id="zQX-Q5-GIu"/>
+                <constraint firstItem="Ipj-Oh-UQa" firstAttribute="centerX" secondItem="NX1-Xs-j5b" secondAttribute="centerX" id="zyX-ph-T6t"/>
+            </constraints>
+            <point key="canvasLocation" x="1710.6870229007634" y="-627.46478873239437"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

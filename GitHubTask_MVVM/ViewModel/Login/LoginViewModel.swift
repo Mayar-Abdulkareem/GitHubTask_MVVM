@@ -13,12 +13,12 @@ class LoginViewModel {
     var onFetchUser: ((GitHubUser) -> ())?
     
     func fetchUser(name: String) {
-        NetworkClient.sharedInstance.getUser(userName: name) { result in
+        NetworkClient.sharedInstance.getUser(userName: name) { [weak self] result in
             switch result {
             case .success(let user):
-                self.onFetchUser?(user)
+                self?.onFetchUser?(user)
             case .failure(let error):
-                self.onShowError?(error.localizedDescription)
+                self?.onShowError?(error.localizedDescription)
             }
         }
     }

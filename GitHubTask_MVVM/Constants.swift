@@ -11,4 +11,9 @@ struct Constants {
     struct UrlBasePoint {
         static let gitHubUsersUrl = "https://api.github.com/users/"
     }
+    
+    struct LocalizedStrings {
+        static let alertTitle = NSLocalizedString("alertTitle", comment: "fff")
+        static let alertMessage = NSLocalizedString("alertMessage", comment: "Fff")
+    }
 }

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="followerCell" id="qdH-kC-col" customClass="FollowerCell" customModule="GitHubTask_MVVM" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="141" height="133"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="RDF-ih-mhW">
+                <rect key="frame" x="0.0" y="0.0" width="141" height="133"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3vS-ub-AKx" customClass="RoundedImageView" customModule="GitHubTask_MVVM" customModuleProvider="target">
+                        <rect key="frame" x="31.666666666666664" y="10" width="77.666666666666686" height="73"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Boe-w3-iVZ">
+                        <rect key="frame" x="8" y="88" width="125" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="qmZ-GY-NiC"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="3vS-ub-AKx" firstAttribute="height" secondItem="RDF-ih-mhW" secondAttribute="height" multiplier="0.55" id="6E4-mO-Zi4"/>
+                    <constraint firstItem="Boe-w3-iVZ" firstAttribute="leading" secondItem="RDF-ih-mhW" secondAttribute="leading" constant="8" id="7Xj-5Y-Ce6"/>
+                    <constraint firstItem="3vS-ub-AKx" firstAttribute="centerX" secondItem="RDF-ih-mhW" secondAttribute="centerX" id="9hi-me-eNf"/>
+                    <constraint firstItem="3vS-ub-AKx" firstAttribute="top" secondItem="RDF-ih-mhW" secondAttribute="top" constant="10" id="ICh-4P-Ue1"/>
+                    <constraint firstItem="Boe-w3-iVZ" firstAttribute="top" secondItem="3vS-ub-AKx" secondAttribute="bottom" constant="5" id="NdJ-eR-jea"/>
+                    <constraint firstAttribute="trailing" secondItem="Boe-w3-iVZ" secondAttribute="trailing" constant="8" id="aHe-al-eQw"/>
+                    <constraint firstItem="3vS-ub-AKx" firstAttribute="width" secondItem="RDF-ih-mhW" secondAttribute="width" multiplier="0.55" id="grl-PU-Fi1"/>
+                </constraints>
+            </collectionViewCellContentView>
+            <size key="customSize" width="141" height="133"/>
+            <connections>
+                <outlet property="followerImg" destination="3vS-ub-AKx" id="ntd-o4-MnA"/>
+                <outlet property="followerName" destination="Boe-w3-iVZ" id="ehI-zu-Elk"/>
+            </connections>
+            <point key="canvasLocation" x="-124" y="-90"/>
+        </collectionViewCell>
+    </objects>
+</document>
