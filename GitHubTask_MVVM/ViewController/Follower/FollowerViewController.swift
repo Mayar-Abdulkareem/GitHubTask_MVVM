@@ -1,46 +1,65 @@
 //
-//  followerVC.swift
-//  03_URLSessionAndUICollection
+//  FollowerViewController.swift
+//  GitHubTask_MVVM
 //
-//  Created by FTS on 02/10/2023.
+//  Created by FTS on 31/10/2023.
 //
 
 import UIKit
 
-class FollowerVC: UIViewController {
-    
+class FollowerViewController: UIViewController {
+
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var noResultsLabel: UILabel!
     
-    static let id = "followerVCID"
-    private var filteredFollowers: [GitHubFollower] = []
-    var viewModel: FollowerViewModel?
+    static var id: String { return "followerVCID" }
+    var viewModel: FollowerViewModel
+    
     private var isSearching: Bool {
         return searchBar.text?.count ?? 0 != 0
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configurFollowerCell()
+        configureDelegates()
+    }
+    
+    init(followers: [GitHubFollower]) {
+        viewModel = FollowerViewModel(with: followers)
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func configurFollowerCell() {
+        let nib = UINib(nibName: "FollowerCell", bundle: nil)
+        collectionView.register(nib, forCellWithReuseIdentifier: "followerCell")
+    }
+    
+    private func configureDelegates() {
         searchBar.delegate = self
+        collectionView.delegate = self
+        collectionView.dataSource = self
     }
 }
 
-extension FollowerVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension FollowerViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let viewModel = self.viewModel else {return 0}
-        return !isSearching ? viewModel.followers.count : filteredFollowers.count
+        return !isSearching ? viewModel.followers.count : viewModel.filteredFollowers.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let viewModel = self.viewModel,
-              (isSearching && indexPath.row < filteredFollowers.count) || (!isSearching && indexPath.row < viewModel.followers.count)
+        guard (isSearching && indexPath.row < viewModel.filteredFollowers.count) || (!isSearching && indexPath.row < viewModel.followers.count)
         else {
             return UICollectionViewCell()
         }
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FollowerCollectionViewCell.id, for: indexPath) as? FollowerCollectionViewCell
-        let follower = !isSearching ? viewModel.followers[indexPath.row] : filteredFollowers[indexPath.row]
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FollowerCell.id, for: indexPath) as? FollowerCell
+        let follower = !isSearching ? viewModel.followers[indexPath.row] : viewModel.filteredFollowers[indexPath.row]
         let followerModel = FollowerCellModel(name: follower.login, avatarUrl: follower.avatarUrl)
         cell?.configureCell(model: followerModel)
         return cell ?? UICollectionViewCell()
@@ -59,19 +78,18 @@ extension FollowerVC: UICollectionViewDelegate, UICollectionViewDataSource, UICo
     }
 }
 
-extension FollowerVC: UISearchBarDelegate {
+extension FollowerViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchBar.showsCancelButton = true
-        guard let viewModel = self.viewModel, searchText.count != 0 else {
+        guard searchText.count != 0 else {
             clearAndShowAllFollowers()
             return
         }
-        filteredFollowers = viewModel.followers.filter { follower in
-            return follower.login.lowercased().contains(searchText.lowercased())
-        }
-        noResultsLabel.isHidden = !(filteredFollowers.count == 0)
-        collectionView.isHidden = (filteredFollowers.count == 0)
+        
+        viewModel.updateFilteredFollowers(text: searchText)
+        noResultsLabel.isHidden = !(viewModel.filteredFollowersIsEmpty)
+        collectionView.isHidden = (viewModel.filteredFollowersIsEmpty)
         collectionView.reloadData()
     }
     
@@ -84,7 +102,7 @@ extension FollowerVC: UISearchBarDelegate {
         collectionView.isHidden = false
         noResultsLabel.isHidden = true
         searchBar.text = ""
-        filteredFollowers.removeAll()
+        viewModel.clearFilteredFollowers()
         collectionView.reloadData()
     }
 }

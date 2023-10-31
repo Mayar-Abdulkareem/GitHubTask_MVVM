@@ -21,10 +21,8 @@ class ViewController: UIViewController {
     
     private func bindWithViewModel() {
         viewModel.onShowError = { [weak self] msg in
-            DispatchQueue.main.async {
-                self?.hideActivityIndicator()
-                self?.showAlert(alertModel: AlertModel(title: "Failure", msg: "Failed to push the UserVC."))
-            }
+            self?.hideActivityIndicator()
+            self?.showAlert(alertModel: AlertModel(title: Constants.LocalizedStrings.alertTitle, msg: Constants.LocalizedStrings.alertMessage))
         }
         
         viewModel.onFetchUser = { [weak self] user in
@@ -34,13 +32,8 @@ class ViewController: UIViewController {
     }
     
     private func navigateToUserVC(with user: GitHubUser) {
-        let userVC = storyboard?.instantiateViewController(withIdentifier: UserVC.id) as? UserVC
-        if let navigationController = navigationController, let userVC = userVC {
-            userVC.viewModel = UserViewModel(with: user)
-            navigationController.pushViewController(userVC, animated: true)
-        } else {
-            showAlert(alertModel: AlertModel(title: "Failure", msg: "Failed to push the UserVC."))
-        }
+        let destVC = UserViewController(user: user)
+        self.navigationController?.pushViewController(destVC, animated: true)
     }
     
     private func configureActivityIndicator() {

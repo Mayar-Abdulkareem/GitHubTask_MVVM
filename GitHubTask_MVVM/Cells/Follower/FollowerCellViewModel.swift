@@ -13,8 +13,9 @@ struct FollowerCellModel {
 }
 
 class FollowerCellViewModel {
-    var model: FollowerCellModel?
     var onFetchImage: ((_ image: UIImage) -> Void)?
+
+    var model: FollowerCellModel?
     
     func fetchImage() {
         guard let model = model else {return}

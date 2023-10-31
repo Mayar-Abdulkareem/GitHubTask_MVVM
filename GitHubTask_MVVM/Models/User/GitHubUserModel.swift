@@ -15,7 +15,5 @@ struct GitHubUser: Codable {
     let followers: Int
     let followersUrl: String
 }
-struct GitHubFollower: Codable {
-    let login: String
-    let avatarUrl: String
-}
+
+
